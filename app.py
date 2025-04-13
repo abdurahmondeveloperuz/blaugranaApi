@@ -1,77 +1,42 @@
+from fastapi import FastAPI, Depends, HTTPException, BackgroundTasks
+from fastapi.middleware.cors import CORSMiddleware
+from utils.get_local import get_fixture as get_fixture_local
+from utils.get_fixture import get_fixture
 from uvicorn import run
-from fastapi import FastAPI, Depends, HTTPException
 import json
-import requests
-from bs4 import BeautifulSoup
-from utils.convert_to_iso import convert_to_iso
-from pprint import pprint as print
 from time import sleep
+import threading
+
 app = FastAPI()
 
-def get_fixture(team_id: int):
-    url = f"https://sports.uz/oz/teams/fixtures?id={team_id}"
-    page = requests.get(url)
-    soup = BeautifulSoup(page.content, "html.parser")
-    fixture_data = []
-    fixtures = soup.find_all("div", class_="item")
-    for fixture in fixtures:
-        match_url = "https://sports.uz" + fixture.find("div", class_="game-info").find("a")["href"]
-        match_id = match_url.split("/")[-1]
-        match_page = requests.get(match_url)
-        match_soup = BeautifulSoup(match_page.content, "html.parser")
-
-        match_league = match_soup.find("ul", class_="scoreboard-header").find("li").text.strip()
-
-        homeTeam = match_soup.find("div", id="team-home")
-        homeTeamLogo = homeTeam.find("img")["src"]
-        homeTeamName = homeTeam.find("h3").text.strip()
-        awayTeam = match_soup.find("div", id="team-away")
-        awayTeamLogo = awayTeam.find("img")["src"]
-        awayTeamName = awayTeam.find("h3").text.strip()
-
-        scoreboard_date = match_soup.find("p", class_="scoreboard-date").text.strip()
-        date = convert_to_iso(scoreboard_date)
-
-        scoreboard_footer = match_soup.find("div", class_="scoreboard-footer")
-        venue = scoreboard_footer.find("p").text.strip()
-        venue = venue.split(":")[-1].strip()
-
-        match_score = match_soup.find("div", class_="game-score")
-        goals = match_score.find_all("span", class_="winner")
-        homeScore = goals[0]
-        awayScore = goals[1]
-
-        game_status = fixture.find("div", class_="game-status").text.strip()
-        if game_status == "Tugadi":
-            game_status = "finished"
-        elif game_status == "Tez orada":
-            game_status = "upcoming"
-        else:
-            game_status = "upcoming"
-        fixture_data.append({
-            "id": match_id,
-            "competition": match_league,
-            "homeTeam": homeTeamName,
-            "homeTeamLogo": homeTeamLogo,
-            "awayTeam": awayTeamName,
-            "awayTeamLogo": awayTeamLogo,
-            "date": date,
-            "venue": venue,
-            "homeScore": homeScore.text.strip(),
-            "awayScore": awayScore.text.strip(),
-            "game_status": game_status,
-            
-        })
-        sleep(0.5)
-    return fixture_data
-    
-
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 verify_team_id = Depends(lambda team_id: team_id)
 
-@app.get("/fixtures", responses={})
+# Background task to update the fixtures.json file
+def update_fixtures():
+    while True:
+        fixture_data = get_fixture(83)
+        with open("./data/fixtures.json", "w") as file:
+            json.dump(fixture_data, file, indent=4)
+        print("[SUCCESS] Data saved to fixtures.json")
+        print("[WARNING] Waiting for 24 hours before the next update...")
+        sleep(60*60*24)  # Sleep for 24 hours
+
+@app.on_event("startup")
+def startup_event():
+    thread = threading.Thread(target=update_fixtures, daemon=True)
+    thread.start()
+
+@app.get("/fixtures")
 async def get_fixtures(team_id: int = verify_team_id):
-    fixture_data = get_fixture(team_id)
+    fixture_data = get_fixture_local(team_id)
     if fixture_data:
         return fixture_data
     else:
