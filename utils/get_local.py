@@ -7,3 +7,9 @@ def get_fixture(team_id: int):
     
     return fixture_data
 
+def get_table():
+    with open("./data/table.json", "r") as file:
+        table_data = json.load(file)
+    
+    return table_data
+

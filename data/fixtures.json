@@ -1,13 +1,39 @@
 [
     {
+        "id": "19135644",
+        "competition": "Ispaniya - La Liga",
+        "homeTeam": "Espanyol",
+        "homeTeamLogo": "https://cdn.sportmonks.com/images/soccer/teams/16/528.png",
+        "awayTeam": "Barselona",
+        "awayTeamLogo": "https://cdn.sportmonks.com/images/soccer/teams/19/83.png",
+        "date": "2025-05-14T00:00:00.000Z",
+        "venue": "RCDE Stadium",
+        "homeScore": "-",
+        "awayScore": "-",
+        "game_status": "upcoming"
+    },
+    {
         "id": "19135634",
         "competition": "Ispaniya - La Liga",
         "homeTeam": "Barselona",
         "homeTeamLogo": "https://cdn.sportmonks.com/images/soccer/teams/19/83.png",
         "awayTeam": "Real Madrid",
         "awayTeamLogo": "https://cdn.sportmonks.com/images/soccer/teams/12/3468.png",
-        "date": "2025-05-11T00:00:00.000Z",
+        "date": "2025-05-11T14:15:00.000Z",
         "venue": "Estadi Ol\u00edmpic Llu\u00eds Companys",
+        "homeScore": "-",
+        "awayScore": "-",
+        "game_status": "upcoming"
+    },
+    {
+        "id": "19391313",
+        "competition": "Europe - UEFA Chempionlar ligasi",
+        "homeTeam": "Noma'lum",
+        "homeTeamLogo": "https://cdn.sportmonks.com/images/soccer/team_placeholder.png",
+        "awayTeam": "Barselona",
+        "awayTeamLogo": "https://cdn.sportmonks.com/images/soccer/teams/19/83.png",
+        "date": "2025-05-05T22:00:00.000Z",
+        "venue": "",
         "homeScore": "-",
         "awayScore": "-",
         "game_status": "upcoming"
@@ -21,6 +47,19 @@
         "awayTeamLogo": "https://cdn.sportmonks.com/images/soccer/teams/19/83.png",
         "date": "2025-05-04T12:00:00.000Z",
         "venue": "Estadio Municipal Jos\u00e9 Zorrilla",
+        "homeScore": "-",
+        "awayScore": "-",
+        "game_status": "upcoming"
+    },
+    {
+        "id": "19391312",
+        "competition": "Europe - UEFA Chempionlar ligasi",
+        "homeTeam": "Barselona",
+        "homeTeamLogo": "https://cdn.sportmonks.com/images/soccer/teams/19/83.png",
+        "awayTeam": "Noma'lum",
+        "awayTeamLogo": "https://cdn.sportmonks.com/images/soccer/team_placeholder.png",
+        "date": "2025-04-28T22:00:00.000Z",
+        "venue": "",
         "homeScore": "-",
         "awayScore": "-",
         "game_status": "upcoming"
@@ -73,9 +112,9 @@
         "awayTeamLogo": "https://cdn.sportmonks.com/images/soccer/teams/19/83.png",
         "date": "2025-04-15T19:00:00.000Z",
         "venue": "Signal Iduna Park",
-        "homeScore": "-",
-        "awayScore": "-",
-        "game_status": "upcoming"
+        "homeScore": "3",
+        "awayScore": "1",
+        "game_status": "finished"
     },
     {
         "id": "19135598",
@@ -608,45 +647,6 @@
         "venue": "Estadio de la Cer\u00e1mica",
         "homeScore": "1",
         "awayScore": "5",
-        "game_status": "finished"
-    },
-    {
-        "id": "19296217",
-        "competition": "Europe - UEFA Chempionlar ligasi",
-        "homeTeam": "Monako",
-        "homeTeamLogo": "https://cdn.sportmonks.com/images/soccer/teams/5/6789.png",
-        "awayTeam": "Barselona",
-        "awayTeamLogo": "https://cdn.sportmonks.com/images/soccer/teams/19/83.png",
-        "date": "2024-09-19T19:00:00.000Z",
-        "venue": "Stade Louis II.",
-        "homeScore": "2",
-        "awayScore": "1",
-        "game_status": "finished"
-    },
-    {
-        "id": "19135295",
-        "competition": "Ispaniya - La Liga",
-        "homeTeam": "Jirona",
-        "homeTeamLogo": "https://cdn.sportmonks.com/images/soccer/teams/7/231.png",
-        "awayTeam": "Barselona",
-        "awayTeamLogo": "https://cdn.sportmonks.com/images/soccer/teams/19/83.png",
-        "date": "2024-09-15T14:15:00.000Z",
-        "venue": "Estadi Municipal de Montilivi",
-        "homeScore": "1",
-        "awayScore": "4",
-        "game_status": "finished"
-    },
-    {
-        "id": "19135281",
-        "competition": "Ispaniya - La Liga",
-        "homeTeam": "Barselona",
-        "homeTeamLogo": "https://cdn.sportmonks.com/images/soccer/teams/19/83.png",
-        "awayTeam": "Real Valladolid",
-        "awayTeamLogo": "https://cdn.sportmonks.com/images/soccer/teams/9/361.png",
-        "date": "2024-08-31T15:00:00.000Z",
-        "venue": "Estadi Ol\u00edmpic Llu\u00eds Companys",
-        "homeScore": "7",
-        "awayScore": "0",
         "game_status": "finished"
     }
 ]
